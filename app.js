@@ -1,11 +1,11 @@
 const Koa = require('koa');
 const router = require('koa-router')();
-var app = new Koa();
+const app = new Koa();
+const auth = require('./server/routes/auth.js');
+
 app.use(require('koa-bodyparser')());
 
-router.get('/', (ctx, next) => {
-	this.body = 'hello world';
-});
+router.use('/auth', auth.routes());
 
 app.use(router.routes());
 app.listen(8889, () => {
