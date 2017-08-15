@@ -11,9 +11,19 @@ const getUserById = async function(id){
 			id: id
 		}
 	});
-	return userInfo.dataValues;
+	return userInfo ? userInfo.dataValues : null;
+}
+
+const getUserByName = async function(name){
+	const userInfo = await User.findOne({
+		where:{
+			username: name
+		}
+	});
+	return userInfo ? userInfo.dataValues : null;
 }
 
 module.exports = {
-	getUserById
+	getUserById,
+	getUserByName
 }

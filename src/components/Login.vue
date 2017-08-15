@@ -23,7 +23,24 @@
 		},
 		methods: {
 			loginTodo() {
-				this.$router.push('/todolist')
+				let obj = {
+					username: this.account,
+					password: this.password
+				}
+				this.$http.post('/auth/user', obj).then((res) => {
+					if(res.data.success){
+						sessionStorage.setItem('demo-token', res.data.token);
+						this.$message({
+							type: 'success',
+							message: '登录成功！'
+						});
+						this.$router.push('/todolist');
+					}else{
+						this.$message.error(res.data.info);
+						sessionStorage.setItem('demo-token', null);
+					}
+				});
+				
 			}
 		}
 	};
