@@ -7,7 +7,7 @@ const getUserInfo = async function(ctx){
 }
 
 const postUserAuth = async function(ctx){
-	let data = ctx.request.body
+	const data = ctx.request.body
 	const userInfo = await user.getUserByName(data.username);
 
 	if(userInfo != null){

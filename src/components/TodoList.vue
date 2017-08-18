@@ -50,7 +50,19 @@
 
 <script>
 
+	// import jwt from 'jsonwebtoken';
+
 	export default {
+		created(){
+			const userInfo = this.getUserInfo();
+			if(userInfo){
+				this.id = userInfo.id;
+				this.username = userinfo.username
+			}else{
+				this.id = '';
+				this.username = '';
+			}
+		},
 		data(){
 			return {
 				name: 'Panfen',
@@ -79,8 +91,35 @@
 					status: false,
 					content: this.todos
 				}
-				this.list.push(obj);
+
+				this.$http.post('/api/todolist', obj).then((res) => {
+					if(res.status == 200){
+						this.$message({
+							type: 'success',
+							message: '创建成功！'
+						});
+						this.getTodolist();
+					}else{
+						this.$message.error('创建失败！');
+					}
+				}, (err) => {
+					this.$message.error('创建失败！');
+					console.log(err);
+				});
+				// this.list.push(obj);
 				this.todos = '';
+			},
+			getTodolist(){
+				this.$http.get('/api/todolist/' + this.id).then((res) => {
+					if(res.status == 200){
+						this.list = res.data;
+					}else{
+						this.$message.error('获取列表失败！');
+					}
+				}, (err) => {
+					this.$message.error('获取列表失败！');
+					console.log(err);
+				});
 			},
 			finished(index){
 				this.$set(this.list[index], 'status', true);
@@ -102,6 +141,15 @@
 					type: 'info',
 					message: '任务已还原'
 				});
+			},
+			getUserInfo(){
+				const token = sessionStorage.getItem('vue-koa-todolist');
+				if(token != null && token != 'null'){
+					// let decode = jwt.verify(token, 'vue-koa-todolist');
+					return decode;
+				}else{
+					return null;
+				}
 			}
 		}
 	}

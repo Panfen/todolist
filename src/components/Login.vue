@@ -13,6 +13,7 @@
 	</el-row>
 </template>
 
+
 <script>
 	export default {
 		data(){
@@ -40,7 +41,6 @@
 						sessionStorage.setItem('demo-token', null);
 					}
 				});
-				
 			}
 		}
 	};
