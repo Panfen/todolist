@@ -1,6 +1,6 @@
 const list = require('../models/list.js');
 
-const getList = async function(ctx){
+const getTodolist = async function(ctx){
 	ctx.body = await list.getListById(ctx.query.id);
 }
 
@@ -19,13 +19,13 @@ const updateTodolist = async function(ctx){
 	const status = ctx.query.status;
 	status = status == '0' ?  true : false;
 
-	const result = async list.updateTodolist(id, user_id, status);
-	this.body = {
-		success：true
+	const result = await list.updateTodolist(id, user_id, status);
+	ctx.body = {
+		success: true
 	}
 }
 
 module.exports = {
-	getList,
+	getTodolist,
 	createTodolist
 }

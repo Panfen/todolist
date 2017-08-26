@@ -40,7 +40,6 @@ const removeTodolist = async function(id, user_id){
 
 const updateTodolist = async function(id, user_id, status){
 	await List.update({
-		{
 			status
 		},{
 			where:{
@@ -48,7 +47,7 @@ const updateTodolist = async function(id, user_id, status){
 				user_id
 			}
 		}
-	});
+	);
 	return true;
 }
 

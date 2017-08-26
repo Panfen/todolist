@@ -65,6 +65,7 @@
 		},
 		data(){
 			return {
+				id: '',
 				name: 'Panfen',
 				todos: '',
 				activeName: 'first',
@@ -88,11 +89,12 @@
 				if(this.todos == '')
 					return;
 				let obj = {
+					user_id: this.id,
 					status: false,
 					content: this.todos
 				}
 
-				this.$http.post('/api/todolist', obj).then((res) => {
+				this.$http.post('/api/createTodolist', obj).then((res) => {
 					if(res.status == 200){
 						this.$message({
 							type: 'success',
@@ -110,7 +112,7 @@
 				this.todos = '';
 			},
 			getTodolist(){
-				this.$http.get('/api/todolist/' + this.id).then((res) => {
+				this.$http.get('/api/getTodolist/' + this.id).then((res) => {
 					if(res.status == 200){
 						this.list = res.data;
 					}else{

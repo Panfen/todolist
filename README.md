@@ -2,6 +2,9 @@
 
 > a simple todolist based on vue2 + koa2
 
+![1](./static/img/cover1.png)
+![2](./static/img/cover2.png)
+
 ## Build Setup
 
 ``` bash
