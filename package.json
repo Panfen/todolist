@@ -19,7 +19,7 @@
     "koa-router": "^7.4.0",
     "mysql2": "^1.6.5",
     "net": "^1.0.2",
-    "sequelize": "^5.8.9",
+    "sequelize": "^5.15.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue": "^2.6.10",
